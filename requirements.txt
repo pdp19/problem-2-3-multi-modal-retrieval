@@ -1,0 +1,14 @@
+# CPU-only torch wheels (models run on CPU). Avoids ~2 GB of CUDA libraries on Linux.
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+pixeltable>=0.7.18,<0.8      # the multimodal SDK: tables, video frame views, embedding indexes
+torch>=2.5
+transformers>=4.50           # CLIP (frames, slides) via pixeltable.functions.huggingface
+sentence-transformers>=3.0   # bge-small text embeddings, optional cross-encoder reranker
+rapidocr_onnxruntime>=1.3    # slide OCR, ONNX on CPU
+wordninja>=2.0               # re-segments OCR words that lost their spaces
+rank_bm25>=0.2.2
+pillow>=10.0
+numpy>=1.26
+
+pytest>=8.0

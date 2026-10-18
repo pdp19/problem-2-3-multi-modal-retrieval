@@ -1,19 +1,30 @@
-# Fill this in before you submit -- our evaluator runs these commands
-# EXACTLY as written, in this order, from a fresh checkout of your fork.
-# Keep every command non-interactive (no prompts) and idempotent.
+# Commands run EXACTLY as written, in order, from a fresh checkout.
+# All are non-interactive and idempotent (downloads skip complete files, indexing skips indexed meetings).
 
 setup_commands:
   - "pip install -r requirements.txt"
-  # - add every other setup step here, in order (env vars, downloads, etc.)
+  # dev team ES2002 (4 meetings): AMI manual annotations (23 MB) + overhead camera video + slide captures (~400 MB)
+  - "python src/main.py download"
+  # 12 held-out meetings from 3 other teams / sites: slide captures only (~40 MB), transcripts come from the annotations
+  - "python src/main.py download --no-video --meetings ES2003a ES2003b ES2003c ES2003d IS1009a IS1009b IS1009c IS1009d TS3003a TS3003b TS3003c TS3003d"
 
 run_commands:
-  - "python src/main.py --help"
-  # - the real command(s) that actually run your solution
+  # Pixeltable index: slides (+OCR, CLIP, text index), transcript clips (text index), video frames every 5 s (CLIP index)
+  - "python src/main.py index"
+  - "python src/main.py index --no-video --meetings ES2003a ES2003b ES2003c ES2003d IS1009a IS1009b IS1009c IS1009d TS3003a TS3003b TS3003c TS3003d"
+  # benchmark: every channel + fused system on 4 query sets -> docs/results.md, artifacts/eval.json
+  - "python src/main.py eval"
+  # the product: ask a question, get a quote + the clip + the slide (clips/slides written to artifacts/answers/)
+  - "python src/main.py ask --team ES2002 \"what did they decide about teletext?\" \"show me the slide with the components diagram\" --export artifacts/answers"
 
-test_commands: []
-  # optional -- commands that run your own tests/checks, if you have any
+test_commands:
+  - "python -m pytest -q"
 
-notes: ""
-  # anything we should know before running this (e.g. "needs a GPU",
-  # "takes about 10 minutes", "expects a sample dataset already present
-  # under data/, see docs/ for where to get it")
+notes: >
+  CPU only, no GPU, API keys or HF token needed. Python 3.10+ (developed on 3.11), ffmpeg on PATH for clip export.
+  The AMI mirror (Edinburgh) is slow per connection; video is fetched as 8 parallel byte ranges with retries,
+  so the download step takes ~5-10 min. First run also fetches bge-small (130 MB) and CLIP ViT-B/32 (600 MB).
+  Measured on a clean venv (Apple M3, 16 GB): pip install ~16 min (torch + pixeltable, no pip cache),
+  index ~2.5 min + ~2.5 min, eval ~1 min, ask ~20 s including model load. Pixeltable keeps its catalog in an embedded Postgres
+  under ~/.pixeltable (set PIXELTABLE_HOME to move it); everything we create lives in the `mmr` directory there.
+  Set MMR_DATA_DIR to reuse an existing AMI download. Tests use synthetic annotations and need neither data nor network.

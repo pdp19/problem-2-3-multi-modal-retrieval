@@ -3,5 +3,12 @@ __pycache__/
 .venv/
 venv/
 .env
-node_modules/
 .DS_Store
+.pytest_cache/
+
+# AMI data (fetched by `python src/main.py download`) and generated outputs
+data/
+artifacts/
+
+# Local editor/agent config
+.claude/

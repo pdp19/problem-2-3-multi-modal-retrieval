@@ -1,0 +1,18 @@
+{"qid": "v01", "meeting": "ES2002b", "text": "show me the slide with photos of the two existing remote controls", "spans": [[335.19, 354.08], [419.72, 677.81]], "kind": "image-only"}
+{"qid": "v02", "meeting": "ES2002c", "text": "the block diagram of the remote's internal parts with the infrared transmitter", "spans": [[992.87, 1051.25], [1154.40, 1171.78]], "kind": "diagram"}
+{"qid": "v03", "meeting": "ES2002d", "text": "the spreadsheet where they worked out the production cost of the remote", "spans": [[451.36, 987.12]], "kind": "spreadsheet"}
+{"qid": "v04", "meeting": "ES2002d", "text": "slide listing the criteria the team used to rate the final design", "spans": [[1009.37, 1037.72], [1053.47, 1306.54]], "kind": "text-slide"}
+{"qid": "v05", "meeting": "ES2002a", "text": "the kick-off slide explaining the three design phases of the project", "spans": [[55.00, 808.31], [1048.46, 1088.52]], "kind": "text-slide"}
+{"qid": "v06", "meeting": "ES2002a", "text": "slide with what each role has to prepare before the next meeting", "spans": [[994.06, 1048.46]], "kind": "text-slide"}
+{"qid": "v07", "meeting": "ES2002c", "text": "slide about the European fashion trend for fruit and vegetable themes", "spans": [[345.24, 428.46]], "kind": "text-slide"}
+{"qid": "v08", "meeting": "ES2002c", "text": "slide on what consumers want most from a remote, a fancy look and feel", "spans": [[254.16, 345.24]], "kind": "text-slide"}
+{"qid": "v09", "meeting": "ES2002c", "text": "the slide about power options such as batteries, kinetic energy or solar", "spans": [[1149.76, 1154.40], [1171.78, 1250.19]], "kind": "text-slide"}
+{"qid": "v10", "meeting": "ES2002c", "text": "the slide proposing to hide extra buttons under a hinged cover", "spans": [[823.76, 873.01]], "kind": "text-slide"}
+{"qid": "v11", "meeting": "ES2002b", "text": "slide on problems with existing remotes like too many buttons and confusing labels", "spans": [[307.96, 335.19], [354.08, 381.01]], "kind": "text-slide"}
+{"qid": "v12", "meeting": "ES2002c", "text": "the slide asking where the corporate slogan should go", "spans": [[873.01, 896.12]], "kind": "text-slide"}
+{"qid": "v13", "meeting": "ES2002d", "text": "the email from the coach with instructions for the detailed design phase", "spans": [[2402.53, 2540.44], [2597.72, 2631.77]], "kind": "screen"}
+{"qid": "v14", "meeting": "ES2002c", "text": "the final report document listing decisions made in each meeting", "spans": [[2410.51, 2442.84]], "kind": "screen"}
+{"qid": "v15", "meeting": "ES2002c", "text": "slide showing that most remotes are big square bricks in dark colours", "spans": [[722.63, 762.53]], "kind": "text-slide"}
+{"qid": "v16", "meeting": "ES2002b", "text": "the title slide of the interface designer's technical functions presentation", "spans": [[277.29, 284.31]], "kind": "text-slide"}
+{"qid": "v17", "meeting": "ES2002c", "text": "slide on the user interface: push buttons, a scroll wheel and an LCD screen", "spans": [[1051.25, 1149.76], [1291.41, 1460.04]], "kind": "text-slide"}
+{"qid": "v18", "meeting": "ES2002d", "text": "slide about evaluating the product against the company's design goals", "spans": [[1037.72, 1053.47]], "kind": "text-slide"}
