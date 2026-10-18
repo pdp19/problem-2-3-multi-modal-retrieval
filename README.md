@@ -34,7 +34,7 @@ python src/main.py download --no-video --meetings ES2003a ES2003b ES2003c ES2003
 python src/main.py index                         # Pixeltable index for the dev meetings (with video)
 python src/main.py index --no-video --meetings ES2003a ES2003b ES2003c ES2003d IS1009a IS1009b IS1009c IS1009d TS3003a TS3003b TS3003c TS3003d
 python src/main.py eval                          # benchmark -> docs/results.md
-python src/main.py ask "show me the slide with the components diagram" --export artifacts/answers
+python src/main.py ask --team ES2002 "show me the slide with the components diagram" --export artifacts/answers
 python -m pytest -q
 ```
 
@@ -42,26 +42,11 @@ python -m pytest -q
 
 ## How it works
 
-```mermaid
-flowchart LR
-  subgraph ingest["Ingest (Pixeltable computed columns, incremental per meeting)"]
-    V[meeting video] -->|frame_iterator 0.2 fps| F[frames view] -->|CLIP| FI[(frame index)]
-    S[slide captures + on-screen times] --> SO[OCR + word re-segmentation] --> SI[(slide text index)]
-    S -->|CLIP| SC[(slide image index)]
-    W[timed words + speakers] --> U[utterances] --> C[clips: ~45 s, cut at slide changes / pauses]
-    SO -.slide text.-> C
-    C -->|bge-small| CI[(clip text index)]
-    C --> B[(BM25)]
-  end
-  subgraph query["Query"]
-    Q[question] --> R{intent router}
-    R -->|speech| T[BM25 + 0.25 dense over clips]
-    R -->|visual: slide, diagram, email...| SL[rank slides: OCR + CLIP + BM25] --> M[slide -> best clip under it]
-    T --> X[weighted RRF] 
-    M --> X
-    X --> A[quote + clip + slide]
-  end
-```
+![architecture](docs/figures/architecture.png)
+
+Editable diagram: [docs/figures/architecture.drawio](docs/figures/architecture.drawio).
+Docs: [summary](docs/README.md) · [results](docs/results.md) · [benchmark](docs/benchmark.md) ·
+[SDK usage + gaps](docs/sdk_usage.md) · [deployment](docs/deployment.md) · [approaches + cost](docs/approaches.md).
 
 | module | what it does |
 |---|---|
